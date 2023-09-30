@@ -3,6 +3,4 @@
 git clone https://github.com/paveltrush/crud-vuejs.git
 ``
 
-``
-composer install
-``
+Launch docker/build-local.sh

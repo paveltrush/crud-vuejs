@@ -17,14 +17,22 @@ WORKDIR /var/www/html
 RUN sed -i "s/user = www-data/user = ${PHPUSER}/g" /usr/local/etc/php-fpm.d/www.conf
 RUN sed -i "s/group = www-data/group = ${PHPGROUP}/g" /usr/local/etc/php-fpm.d/www.conf
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    libicu-dev \
+    unzip
+
+
 #Install required php extensions
-RUN apt-get update \
-  && apt-get install -y --quiet --no-install-recommends zlib1g-dev libicu-dev g++ libbz2-dev libzip-dev libsodium-dev libjpeg-dev libpng-dev libxml2-dev libmagickwand-dev libmagickcore-dev ghostscript\
-  && pecl install xdebug-3.2.1 \
+RUN pecl install xdebug-3.2.1 \
   && rm -r /tmp/pear \
-  && docker-php-ext-configure intl \
-  && docker-php-ext-configure gd --with-jpeg=/usr/lib/ \
-  && docker-php-ext-install pdo pdo_mysql intl bz2 zip sodium soap gd exif\
+  && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd\
   && docker-php-ext-enable gd exif xdebug
 
 # Assign permissions of the working directory to the user

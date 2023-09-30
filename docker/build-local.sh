@@ -15,4 +15,5 @@ chmod 0777 ../.env
 
 echo Setting project key and migration
 docker-compose exec php bash -c "php artisan key:generate"
-docker-compose exec php bash -c "php artisan migrate && exit"
+docker-compose exec php bash -c "php artisan migrate"
+docker-compose exec php bash -c "php artisan db:seed && exit"

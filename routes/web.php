@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('product.index');
 });
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
+Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
