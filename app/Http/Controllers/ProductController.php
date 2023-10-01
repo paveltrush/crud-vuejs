@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
+    protected static $pageTitle = "Products";
     public function index()
     {
-        return view('product.index');
+        $products = Product::get();
+
+        $pageTitle = static::$pageTitle;
+
+        return view('product.index', compact('products', 'pageTitle'));
     }
 }
