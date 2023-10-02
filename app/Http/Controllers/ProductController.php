@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
@@ -72,6 +73,14 @@ class ProductController extends Controller
         app('common.flash_message')->success("Product updated");
 
         return back();
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function export()
+    {
+        return (new ProductsExport)->download('products.csv');
     }
 
 }

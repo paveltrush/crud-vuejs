@@ -7,8 +7,12 @@
             <h3 class="text-gray-700 text-3xl font-medium">Products list</h3>
 
             <div class="flex rounded-md">
-                <a href="{{url('/products-create')}}" class="button px-6 py-3 bg-green-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400">Create</a>
-                <button class="px-6 py-3 bg-blue-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400 ml-3">Import</button>
+                <form action="{{route('products-export')}}" method="post">
+                    @csrf
+                    <a href="{{url('/products-create')}}" class="button px-6 py-3 bg-green-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400">Create</a>
+
+                    <button class="button px-6 py-3 bg-blue-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400 ml-3">Export</button>
+                </form>
             </div>
         </div>
     </div>

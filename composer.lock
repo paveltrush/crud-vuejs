@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d72da5370590613fc9e61ff141bd7852",
+    "content-hash": "91d01bef2fb36e09bc3f6bc92c780cdc",
     "packages": [
         {
             "name": "brick/math",
@@ -5472,6 +5472,68 @@
             "time": "2023-01-03T09:29:04+00:00"
         },
         {
+            "name": "vitorccs/laravel-csv",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vitorccs/laravel-csv.git",
+                "reference": "31f0cff5c2b6cd2daddbad3ceb57c2c3b56036e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vitorccs/laravel-csv/zipball/31f0cff5c2b6cd2daddbad3ceb57c2c3b56036e0",
+                "reference": "31f0cff5c2b6cd2daddbad3ceb57c2c3b56036e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "ext-sqlite3": "*",
+                "laravel/legacy-factories": "1.x-dev",
+                "orchestra/testbench": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "suggest": {
+                "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (^1.0)."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vitorccs\\LaravelCsv\\ServiceProviders\\CsvServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vitorccs\\LaravelCsv\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vitor Siqueira",
+                    "email": "vitorccsiqueira@gmail.com"
+                }
+            ],
+            "description": "PHP Laravel package to create CSV files in a memory-optimized way",
+            "keywords": [
+                "csv",
+                "export",
+                "laravel",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/vitorccs/laravel-csv/issues",
+                "source": "https://github.com/vitorccs/laravel-csv/tree/v1.1.0"
+            },
+            "time": "2023-04-12T04:29:58+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.5.0",
             "source": {
@@ -9125,5 +9187,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

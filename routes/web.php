@@ -22,3 +22,4 @@ Route::get('/products/{product_id}', [\App\Http\Controllers\ProductController::c
 Route::put('/products/{product_id}', [\App\Http\Controllers\ProductController::class, 'update'])->name('product-update');
 Route::get('/products-create', [\App\Http\Controllers\ProductController::class, 'create']);
 Route::post('/products-store', [\App\Http\Controllers\ProductController::class, 'store'])->name('product-store');
+Route::post('/products-export', [\App\Http\Controllers\ProductController::class, 'export'])->name('products-export');
