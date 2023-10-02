@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property-read int $id
  * @property string $title
  * @property string $description
  * @property float $price

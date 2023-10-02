@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index']);
-
-//Auth::routes();
 
 Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index']);
+Route::get('/products/{product_id}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('product-edit');
+Route::put('/products/{product_id}', [\App\Http\Controllers\ProductController::class, 'update'])->name('product-update');
+Route::get('/products-create', [\App\Http\Controllers\ProductController::class, 'create']);
+Route::post('/products-store', [\App\Http\Controllers\ProductController::class, 'store'])->name('product-store');

@@ -7,7 +7,7 @@
             <h3 class="text-gray-700 text-3xl font-medium">Products list</h3>
 
             <div class="flex rounded-md">
-                <button class="px-6 py-3 bg-green-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400">Create</button>
+                <a href="{{url('/products-create')}}" class="button px-6 py-3 bg-green-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400">Create</a>
                 <button class="px-6 py-3 bg-blue-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400 ml-3">Import</button>
             </div>
         </div>
@@ -35,7 +35,7 @@
                             <td class="py-4 px-6 border-b text-gray-500">{{$product->description}}</td>
                             <td class="py-4 px-6 border-b text-gray-500">{{$product->price}}</td>
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="{{route('product-edit', $product->id)}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                             </td>
                         </tr>
                     @endforeach
