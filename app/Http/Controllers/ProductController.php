@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductsExportEvent;
 use App\Exports\ProductsExport;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
@@ -76,11 +77,17 @@ class ProductController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function export()
     {
-        return (new ProductsExport)->download('products.csv');
+//        return (new ProductsExport)->download('products.csv');
+//        $csvContent =  (new ProductsExport)->download('products.csv');
+        event(new ProductsExportEvent('test value'));
+//        if($csvContent->isOk()){
+//            event(new ProductsExportEvent());
+//        }
+        return response()->json([], 200);
     }
 
 }
