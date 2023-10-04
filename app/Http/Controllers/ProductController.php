@@ -7,6 +7,9 @@ use App\Exports\ProductsExport;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
+use League\Csv\CannotInsertRecord;
+use League\Csv\Exception;
+use League\Csv\Writer;
 
 class ProductController extends Controller
 {
@@ -77,17 +80,36 @@ class ProductController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * Generate CSV content
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
     public function export()
     {
-//        return (new ProductsExport)->download('products.csv');
-//        $csvContent =  (new ProductsExport)->download('products.csv');
-        event(new ProductsExportEvent('test value'));
-//        if($csvContent->isOk()){
-//            event(new ProductsExportEvent());
-//        }
-        return response()->json([], 200);
+        $records = Product::query()->select(['title', 'price', 'description'])->get()->toArray();
+        $headers = ['Title', 'Price', 'Description'];
+
+        $values = [];
+
+        foreach ($records as $item) {
+            $values[] = array_values($item);
+        }
+
+        $result = array_merge([$headers], $values);
+
+        $csv = Writer::createFromString('');
+
+        try {
+            $csv->insertAll($result);
+
+            sleep(5);
+
+            event(new ProductsExportEvent($csv->getContent()));
+
+            return response("CSV generated", 200);
+        } catch (CannotInsertRecord|Exception $e) {
+            return response($e->getMessage(), 500);
+        }
     }
 
 }

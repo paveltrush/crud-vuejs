@@ -19,7 +19,7 @@ services:
         container_name: crud_nginx
         ports:
             - "80:80"
-            - "6001:6001"
+#            - "6001:6001"
         volumes:
             -   type: bind
                 source: ..
@@ -28,9 +28,7 @@ services:
             - php
             - mysql
         networks:
-            crud:
-                aliases:
-                    - simple-crud.me
+            - crud
 
     mysql:
         image: mysql:8
@@ -84,24 +82,3 @@ services:
                 target: /var/www/html
         networks:
             - crud
-
-#    artisan:
-#        build:
-#            context: .
-#            dockerfile: php.dockerfile
-#            args:
-#                - PHPUSER=${PHPUSER:-www-data}
-#                - PHPGROUP=${PHPGROUP:-www-data}
-#        container_name: crud_artisan
-#        volumes:
-#            -   type: bind
-#                source: ..
-#                target: /var/www/html
-#        depends_on:
-#            - mysql
-#        working_dir: /var/www/html
-#        entrypoint: [ 'php', '/var/www/html/artisan' ]
-#        networks:
-#            - crud
-#        environment:
-#            - COMPOSER_AUTH
