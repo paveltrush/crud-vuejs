@@ -19,7 +19,7 @@
                         <label class="text-sm">Title</label>
 
                         <input type="text" name="title" value="{{old('title')}}"
-                               class="form-input w-full border rounded-md focus:border-indigo-600 focus:outline-none my-2 px-4 py-2 @error('price') invalid:border-red-500 @enderror">
+                               class="form-input w-full border rounded-md focus:border-indigo-600 focus:outline-none my-2 px-4 py-2 @error('price') border-red-500 @enderror">
 
                         @error('title')
                         <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">

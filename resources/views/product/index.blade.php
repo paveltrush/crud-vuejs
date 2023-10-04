@@ -7,14 +7,12 @@
             <h3 class="text-gray-700 text-3xl font-medium">Products list</h3>
 
             <div class="flex rounded-md">
-{{--                <form action="{{route('products-export')}}" method="post">--}}
-{{--                    @csrf--}}
-{{--                    <a href="{{url('/products-create')}}" class="button px-6 py-3 bg-green-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400">Create</a>--}}
-
-{{--                    <button class="button px-6 py-3 bg-blue-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400 ml-3">Export</button>--}}
-{{--                </form>--}}
                 <a href="{{url('/products-create')}}" class="button px-6 py-3 bg-green-400 rounded-md text-white font-medium tracking-wide hover:bg-gray-400">Create</a>
                 <export-component></export-component>
+                <form class="ml-3" action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="px-6 py-3 bg-black rounded-md text-white font-medium hover:bg-gray-400">Logout</button>
+                </form>
             </div>
         </div>
     </div>
@@ -27,7 +25,7 @@
                     <tr>
                         <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Title</th>
                         <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Description</th>
-                        <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Price($)</th>
+                        <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Price</th>
                         <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Actions</th>
                     </tr>
                     </thead>
