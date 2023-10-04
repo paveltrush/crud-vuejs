@@ -1,6 +1,6 @@
 FROM node:lts-alpine as build-stage
 
-WORKDIR /var/www/html
+WORKDIR /app
 
 COPY package.json ./
 COPY package-lock.json* ./

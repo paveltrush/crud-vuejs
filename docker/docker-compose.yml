@@ -59,6 +59,8 @@ services:
             args:
                 - PHPUSER=${PHPUSER:-www-data}
                 - PHPGROUP=${PHPGROUP:-www-data}
+        ports:
+            - "6001:6001"
         container_name: crud_php
         depends_on:
             - mysql

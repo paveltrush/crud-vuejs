@@ -35,10 +35,6 @@ RUN pecl install xdebug-3.2.1 \
   && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd\
   && docker-php-ext-enable gd exif xdebug
 
-# Assign permissions of the working directory to the user
-#RUN chown -R ${PHPGROUP}:${PHPUSER} \
-#    /var/www/html/storage \
-#    /var/www/html/bootstrap/cache
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
