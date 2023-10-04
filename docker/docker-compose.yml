@@ -1,0 +1,84 @@
+version: '3.9'
+
+networks:
+    crud:
+        driver: bridge
+        name: crud
+
+volumes:
+    mysql-data:
+
+services:
+    server:
+        build:
+            context: .
+            dockerfile: nginx.dockerfile
+            args:
+                - NGINXUSER=${NGINXUSER:-www-data}
+                - NGINXGROUP=${NGINXGROUP:-www-data}
+        container_name: crud_nginx
+        ports:
+            - "80:80"
+#            - "6001:6001"
+        volumes:
+            -   type: bind
+                source: ..
+                target: /var/www/html
+        depends_on:
+            - php
+            - mysql
+        networks:
+            - crud
+
+    mysql:
+        image: mysql:8
+        container_name: crud_mysql
+        restart: unless-stopped
+        command: --default-authentication-plugin=caching_sha2_password --max_allowed_packet=3221225472
+        tty: true
+        ports:
+            - "4306:3306"
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        networks:
+            - crud
+        volumes:
+            -   type: volume
+                source: mysql-data
+                target: /var/lib/mysql
+
+    php:
+        build:
+            context: .
+            dockerfile: php.dockerfile
+            args:
+                - PHPUSER=${PHPUSER:-www-data}
+                - PHPGROUP=${PHPGROUP:-www-data}
+        container_name: crud_php
+        depends_on:
+            - mysql
+        volumes:
+            -   type: bind
+                source: ..
+                target: /var/www/html
+        networks:
+            - crud
+
+    node:
+        build:
+            context: ..
+            dockerfile: docker/node.dockerfile
+        ports:
+            - "3000:3000"
+        container_name: crud_node
+        volumes:
+            -   type: bind
+                source: ..
+                target: /var/www/html
+        networks:
+            - crud

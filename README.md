@@ -3,6 +3,9 @@
 git clone https://github.com/paveltrush/crud-vuejs.git
 ``
 
-``
-composer install
-``
+Launch docker/build-local.sh
+
+Add simple-crud.me to your hosts file
+## User credentials
+Email: test@gmail.com \
+Password: pass1234
